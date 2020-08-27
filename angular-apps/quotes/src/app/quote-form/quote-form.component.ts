@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Quotes } from '../quotes';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-quote-form',
   templateUrl: './quote-form.component.html',
@@ -8,10 +9,11 @@ import { Quotes } from '../quotes';
 export class QuoteFormComponent implements OnInit {
 
   newQuote = new Quotes(0,"","",new Date());
-  @Output() addGoal = new EventEmitter<Quotes>();
+  @Output() addQuote = new EventEmitter<Quotes>();
 
-  submitQuote(){
-this.addGoal.emit(this.newQuote);
+  submitQuote(form:NgForm){
+    this.addQuote.emit(this.newQuote);
+    form.resetForm()
   }
   constructor() { }
 
